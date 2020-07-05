@@ -3,7 +3,7 @@ const checkLogin = async (userName, password) => {
 	try {
 		const rs = await axios({
 			method: 'POST',
-			url: 'http://127.0.0.1:2000/api/v1/users/signin',
+			url: '/api/v1/users/signin', // this only works because both api and frontend are hosted on same url
 			data: {
 				userName,
 				password

@@ -57,7 +57,7 @@ const updateDetails = async (userName, email, photo) => {
 	try {
 		const rs = await axios({
 			method: 'PATCH',
-			url: 'http://127.0.0.1:2000/api/v1/users/updateMe/',
+			url: '/api/v1/users/updateMe/',
 			data: {
 				userName,
 				email,

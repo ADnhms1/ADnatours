@@ -6,7 +6,7 @@ const stripe = Stripe(
 const bookTour = async (tourId) => {
 	try {
 		// 1) get checkout session
-		const session = await axios(`http://localhost:2000/api/v1/bookings/booking-session/${tourId}`);
+		const session = await axios(`/api/v1/bookings/booking-session/${tourId}`);
 		console.log(session);
 
 		// 2) finally charge user here redirectToCheckout will show stripe created payment page.

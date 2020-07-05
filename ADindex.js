@@ -5,6 +5,7 @@ const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const compression = require('compression'); // it is used to compress all text and json responses that server sends back (usually added before deployment)
 
 // external security libraries
 
@@ -51,6 +52,8 @@ const bookingRoutes = require('./routes/bookingRoutes');
 var cors = require('cors');
 
 // global middleware
+
+app.use(compression());
 
 app.use(cors()); // Use this after the variable declaration
 

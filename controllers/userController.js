@@ -274,7 +274,7 @@ const makeToken = (id, res) => {
 	if (process.env.NODE_ENV === 'production') cookieOptions.secure = false;
 	try {
 		console.log('in try');
-		res.cookie('jwt', token, cookieOptions);
+		// res.cookie('jwt', token, cookieOptions);
 	} catch (error) {
 		console.log(error.Error);
 	}
