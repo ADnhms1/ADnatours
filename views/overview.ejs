@@ -1,0 +1,77 @@
+    <!-- header -->
+
+    <%- include('header.ejs') -%>
+    <div class="container d-flex mt-5">
+        <div class="row">
+                <%console.log('From template : ' + data[0]);%>
+                <% data.forEach(e => { %>
+                    <% console.log("from template : " + e) %>
+                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" src='img/tours/<%= e.imageCover %>' height="300" width="100">
+                            </div>
+                            <div class="card-content">
+                              <span class="card-title activator grey-text text-darken-4"><%= e.name %><i class="material-icons right">more_vert</i></span>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4"><%= e.name %><i class="material-icons right">close</i></span>
+                                <p class="font-weight-normal text-uppercase"><%= e.difficulty %> <%= e.duration %> day tour</p>
+                                <p class="d-flex mt-4 font-italic font-weight-normal"><%= e.summary %></p>
+                                <div class="row tourDetails font-weight-light">
+                                    <div class="col-6 p-0">
+                                        <p>
+                                            <svg class="card__icon">
+                                                <use xlink:href="img/icons.svg#icon-map-pin"></use>
+                                            </svg>
+                                            <%= e.startLocation.description%>
+                                        </p>
+                                        <p>
+                                            <svg class="card__icon">
+                                                <use xlink:href="img/icons.svg#icon-flag"></use>
+                                            </svg>
+                                            <%= e.locations.length %> stops
+                                        </p>
+                                    </div>
+                                    <div class="col-6 p-0">
+                                        <p>
+                                            <svg class="card__icon">
+                                                <use xlink:href="img/icons.svg#icon-calendar"></use>
+                                            </svg>
+                                            <%= e.startDates[0].toLocaleString('en-us', {month : 'long', year : 'numeric'}) %>
+                                        </p>
+                                        <p>
+                                            <svg class="card__icon">
+                                                <use xlink:href="img/icons.svg#icon-user"></use>
+                                            </svg>
+                                            <%= e.maxGroupSize %> people
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action p-0">
+                                <div class="row d-flex mt-4">
+                                    <div class="col-6">
+                                        <div class="row m-0">
+                                            <p><b>$<%= e.price%></b> <span class="font-weight-light"> per person</span></p>
+                                        </div>
+                                        <div class="row m-0">
+                                            <p><b><%= e.ratingsAverage %></b> <span class="font-weight-light">rating (<%= e.ratingsQuantity%>)</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center">
+                                        <!-- <p class="ADbtn btn-info btn-lg btn-block">Details</p> -->
+                                        <a class="ADbtn btn-info btn-lg btn-block" href='/tours/<%= e.slug %>' >Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <% }) %>
+        </div>
+    </div>
+
+    <!-- footer -->
+
+    <%- include('footer.ejs') -%>

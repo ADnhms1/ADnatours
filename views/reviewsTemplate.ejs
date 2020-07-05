@@ -1,0 +1,25 @@
+<div class="reviews">    
+    <% reviews.forEach((e) => { %>
+        <div class="reviews__card">
+            <div class="reviews__avatar">
+                <img
+                    src="/img/users/<%= e.User.photo %>"
+                    alt="<%= e.User.userName %>"
+                    class="reviews__avatar-img"
+                />
+                <h6 class="reviews__user"><%= e.User.userName %></h6>
+            </div>
+            <p class="reviews__text">
+                <%= e.review %>
+            </p>
+            <div class="reviews__rating">
+                <% for(let i=0; i< e.rating; i++) { %>
+                    <svg class="reviews__star reviews__star--active">
+                            <use xlink:href="/img/icons.svg#icon-star"></use>
+                    </svg>
+                <%}%>
+                
+            </div>
+        </div>
+    <% }) %>
+</div>

@@ -1,0 +1,106 @@
+    <!-- header -->
+
+    <%- include('header.ejs') -%>
+
+    <div class="fluid-container">
+        <img class="materialboxed" width="100%" height="600px" src="/img/tours/<%= data.imageCover %>" alt="">
+        <div class="centered text-white"><span class="display-3"><%= data.name %></span><br><br>
+            <span class="durationpad"><i class="far fa-clock"></i> <%= data.duration %> DAYS</span> 
+            <span class="locationpad"><i class="fas fa-map-marker-alt"></i> <%= data.startLocation.description %></span> </div>
+    </div>
+
+    <div class="container tourDetails">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <div class="row">
+                    <h5></h>QUICK FACTS</h5>
+                    <table>
+                        <tr>
+                            <td><span class="text-uppercase font-weight-bold">NEXT DATE</span> &nbsp;&nbsp; <%= data.startDates[0].toLocaleString('en-us', {month : 'long', year : 'numeric'}) %></td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-uppercase font-weight-bold">DIFFICULTY</span> &nbsp;&nbsp; <%= data.difficulty %></td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-uppercase font-weight-bold">PARTICIPANTS</span> &nbsp;&nbsp; <%= data.maxGroupSize %> People</td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-uppercase font-weight-bold">RATING</span> &nbsp;&nbsp; <%= data.ratingsAverage %>/5</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <h5>YOUR TOUR GUIDES</h5>
+                    <table>
+                        <% data.guides.forEach((e) => { %>
+                            <tr>
+                                <!-- <td><span class="text-uppercase font-weight-bold"><%= e.role %></span> &nbsp;&nbsp; <%= e.userName %></td> -->
+                                <% if(e.role === 'lead-guide') {%>
+                                    <td><span class="text-uppercase font-weight-bold">LEAD GUIDE</span> &nbsp;&nbsp; <%= e.userName %></td>
+                                <%} else {%>
+                                    <td><span class="text-uppercase font-weight-bold">TOUR GUIDE</span> &nbsp;&nbsp; <%= e.userName %></td>
+                                <%}%>
+                            </tr>
+                        <% }) %>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <h5>ABOUT <%= data.name %></h5>
+                <p><%= data.description %></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="slider">
+        <ul class="slides">
+            <% data.images.forEach((e) => { %>
+                <li>
+                    <img src="/img/tours/<%= e %>"> <!-- random image -->
+                    <div class="caption center-align">
+                        <h3 class="text-uppercase"><%= data.slug %></h3>
+                        <h5 class="light grey-text text-lighten-3"><%= data.summary %></h5>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <!-- reviews -->
+
+    <%- include('reviewsTemplate.ejs', {reviews}) -%>
+    
+    <section class='mt-5'>
+        <!-- <%= console.log("from location : " + data.locations[0]) %> -->
+        <div id="map" style='width: 100%; height: 400px;' data-location="<%= JSON.stringify(data.locations) %>">
+
+        </div>
+    </section>
+
+
+    <div class="cta container mt-5">
+        <div class="cta__img cta__img--logo">
+            <img src="/img/logo-white.png" alt="Natours logo" class="" />
+        </div>
+        <img src="/img/tours/<%= data.images[0] %>" alt="" class="cta__img cta__img--1" />
+        <img src="/img/tours/<%= data.images[1] %>" alt="" class="cta__img cta__img--2" />
+  
+        <div class="cta__content">
+            <h4 class="heading-secondary">What are you waiting for?</h4>
+            <p class="cta__text pl-1">
+              <%= data.duration %> days. 1 adventure. Infinite memories. Make it yours today!
+            </p>
+            <% if(loggedInUser){ %>
+            <button class="btn span-all-rows rounded-pill" id="bookTour" data-tour-id=<%= data._id %>>Book tour now!</a></button>
+            <% } else { %>
+            <button class="btn span-all-rows rounded-pill"> <a href="/auth/login">Please Login</a></button>
+            <%}%>
+        </div>
+    </div>
+
+
+    <!-- footer -->
+
+    <%- include('footer.ejs') -%>

@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/css/profile.css"/>  
+
+        <!-- bootstrap css -->
+        <link rel="stylesheet" href="/bootstrap.css">
+
+        <style>
+            .form-control{
+                display: inline;
+            }
+        </style>
+
+    </head>
+    <body>
+        <!-- This is a reverse engineering of the "Hyperspace"
+     design from HTML5 Up! https://html5up.net/hyperspace -->
+
+        <main class="main">
+            <aside class="bar">
+            <nav class="profileNav">
+                <ul>
+                    <li><a id="anchor" href="#">SETTINGS</a></li>
+                    <li><a id="anchor" href="/my-tours">MY BOOKINGS</a></li>
+                    <li><a id="anchor" href="#">MY PREVIEW</a></li>
+                    <li><a id="anchor" href="#">BILLING</a></li>
+                    <% if(loggedInUser.role === 'admin') { %>
+                        <li><a id="anchor" href="#">MANAGE TOURS</a></li>
+                        <li><a id="anchor" href="#">MANAGE USERS</a></li>
+                        <li><a id="anchor" href="#">MANAGE REVIEWS</a></li>
+                        <li><a id="anchor" href="#">MANAGE BOOKINGS</a></li>
+                    <% } %>
+                </ul>
+            </nav>
+            </aside>
+        </main>
+
+        <div class="ADcontainer d-flex justify-content-center">
+            <h1 class="font-weight-normal">YOUR ACCOUNT SETTINGS</h1>
+            <form id="profileForm" method="POST" action="/submit-user-data">
+                <div class="form-group">
+                    <label for="profileUserame">Name</label>
+                    <input type="text" class="form-control" id="profileUserame" placeholder="Name" name="userName" value=<%= loggedInUser.userName %>>
+                </div>
+                <div class="form-group">
+                  <label for="profileEmail">Email address</label>
+                  <input class="form-control" id="profileEmail" name="email" aria-describedby="emailHelp" placeholder="Enter email" width="100%" value=<%= loggedInUser.email %>>
+                </div>
+                <div class="form__photo-upload mt-4">
+                    <% if(loggedInUser.photo) { %>
+                        <img class="rounded-circle" height="50px" width="50px" src="/img/users/<%= loggedInUser.photo %>" alt="">
+                    <% } else { %>
+                        <img class="rounded-circle" height="50px" width="50px" src="/img/users/default.jpg" alt="">
+                    <% } %>
+                </div>
+
+                <div class="custom-file mt-4">
+                    <input type="file" class="custom-file-input" id="photo" name="photo" accept="image/*">
+                    <label class="custom-file-label" for="photo">Choose New Image</label>
+                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                </div>
+                <button type="submit" class="ADbtn btn-success btn-lg mt-4" id="saveSettings">Save Settings</button>
+            </form>
+        </div>
+
+        <div class="ADcontainer d-flex justify-content-center">
+            <h1 class="font-weight-normal">PASSWORD CHANGE</h1>
+            <!-- <form id="profileForm" method="POST" action="/update-user-password"> -->
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <input type="password" class="form-control" id="currentPassword" placeholder="Current Password" name="currentPass">
+                </div>
+
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" class="form-control" id="newPassword" placeholder="New Password" name="newPassword">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword">
+                </div>
+
+                <button type="submit" id="updatePassword" class="ADbtn btn-success btn-lg mt-4">Save Password</button>
+            </form>
+        </div>
+        
+        <!-- axios -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <!-- <script src="/js/ADupdateData.js"></script>  -->
+    </body> 
+</html>

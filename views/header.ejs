@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natours | <%= title %></title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,300i,700"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png" />
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/bootstrap.css">
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- card three dots -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/6779c1b158.js" crossorigin="anonymous"></script>
+
+    <!-- main css -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- mapbox -->
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+
+
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
+    <a class="navbar-brand" href="#">Trips</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= console.log("from header")%>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">All Tours</a>
+            </li>
+        </ul>
+        <a href="#" class="brand-logo center d-flex mb-1"><img src="/img/logo-white.png" alt="" width="55" height="30"></a>
+        <ul class="navbar-nav">
+            <%if (loggedInUser) {%>
+                <li class="nav-item">
+                    <a class="nav-link" href="/me"><%= loggedInUser.userName %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/logout">Logout</a>
+                </li> 
+            <% } else {%>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">SignUp</a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+</nav>
