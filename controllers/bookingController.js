@@ -33,7 +33,7 @@ exports.getCheckoutSession = async (req, res, next) => {
 		]
 	});
 
-	// send the session
+	// send the session which will create and send the stripe payment page to the user
 
 	res.status(200).json({
 		status: 'success',
